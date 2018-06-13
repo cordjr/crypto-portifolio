@@ -1,9 +1,28 @@
 <h1> Portfolios </h2>
 <div class="row">
-  <button class="btn btn-primary btn-large pull-right">New Portfolio</button>
+  <button class="btn btn-primary btn-lg pull-right" data-target="#modalPortfolio" data-toggle="modal" >New Portfolio</button>
 </div>
 <div class="row">
   <ul class="nav nav-tabs">
     <li><a href="#">Portfolio 1</a></li>
   </ul>
+</div>
+<div id="modalPortfolio" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
