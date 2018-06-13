@@ -6,7 +6,6 @@ class HomeController < ApplicationController
 
     def cards
       @coins = Coin.all
-
       render partial: "cards"
     end
 end

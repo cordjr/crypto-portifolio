@@ -8,16 +8,21 @@
   </ul>
 </div>
 <div id="modalPortfolio" class="modal fade" tabindex="-1" role="dialog">
+  <%= form_for @portfolio, url:'create', method: 'post' do |f| %>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <div class="form-group">
+          <label for="name">Portifolio Name</label>
+          <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -25,4 +30,5 @@
       </div>
     </div>
   </div>
+  <%end%>
 </div>
