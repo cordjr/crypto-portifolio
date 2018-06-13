@@ -1,9 +1,10 @@
 require 'rufus-scheduler'
 
 scheduler = Rufus::Scheduler::singleton
-price_updater = PriceUpdaterService.new
 
-scheduler.every '40s'do 
+
+scheduler.every '10s'do 
+ price_updater = PriceUpdaterService.new
  puts  "runing price updater service"
  price_updater.run
    
