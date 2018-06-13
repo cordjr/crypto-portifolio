@@ -6,4 +6,11 @@ feature 'portfolio page' do
     expect(page).to have_content("Portfolios")
   end
 
+  scenario "should have a button called new portfolio" do
+    visit("/portfolio")
+    expect(page).to have_content("New Portfolio")
+
+  end
+
+
 end
