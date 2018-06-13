@@ -1,3 +1,18 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.coin-card{
+  margin-top: 15px !important;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgray;
+  margin-left: 0.4em;
+
+}
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
