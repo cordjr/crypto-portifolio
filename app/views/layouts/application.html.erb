@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CryptoPortifolio</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+   <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapse" data-target="#bs-exampple-navbar-collapse1">
+      <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand">History of the universe</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-exampple-navbar-collapse1">
+    <ul class="nav navbar-nav navbar-right">
+    <li>
+      <form><a href="#" class="btn btn-success navbar-btn btn-sm">Ask Question</a></form>
+    </li>
+    </ul>
+    </div>
+   </div>
+</nav>
+<div class="container">
+<%= yield %>
+</div>
+</body>
+</html>
