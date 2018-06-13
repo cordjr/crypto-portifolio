@@ -5,10 +5,10 @@ coin_list = [
     {symbol:'XRP' , name: 'Ripple', icon_path: 'icons/ripple.png'  },
     {symbol:'LTC' , name: 'Litecoin', icon_path: 'icons/litecoin-logo.png'  }
 ]
-
-coin_list.each do |c|
-    if not Coin.where(symbol: c[:symbol]).take
-        Coin.create(c)
+if Coin.table_exists?
+    coin_list.each do |c|
+        if not Coin.where(symbol: c[:symbol]).take
+            Coin.create(c)
+        end
     end
 end
-
