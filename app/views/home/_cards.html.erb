@@ -3,8 +3,14 @@
     <img src="" alt="">
     <div class="media-body">
       <h5><%=coin.name %></h5>
-       <strong>last Price</strong><%=coin.last_price %>
-       <strong>Last update</strong> <%=coin.last_price_update %>
+      <p>
+      <strong> Last Price</strong>  <%=number_to_currency(coin.last_price) %>
+      </p>
+      <p>
+      <strong> Last update</strong> <%=coin.last_price_update %>
+      </p>
+       
+       
 
     </div>
 

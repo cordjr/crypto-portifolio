@@ -7,8 +7,9 @@ class PriceUpdaterService
         coin_symbol_list = coin_list.collect {|c| c.symbol }
         price_data = price_service.get_price_data(coin_symbol_list)
         coin_list.each do |coin|
-            price = price_data["RAW"][coin.symbol]["USD"]
-            coin.last_price = price
+            puts price_data["RAW"][coin.symbol]["USD"]["PRICE"]
+            price = price_data["RAW"][coin.symbol]["USD"]["PRICE"]            
+            coin.last_price =  price.to_d
             coin.last_price_update = DateTime.now
             coin.save
 
