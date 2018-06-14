@@ -1,14 +1,44 @@
 <h1> Portfolios </h2>
+<%if flash[:success] %>
+ <div class="alert alert-success">
+   <h3> <%=flash[:success] %> </h3>
+ </div>
+<%end%>
 <div class="row">
   <button class="btn btn-primary btn-lg pull-right" data-target="#modalPortfolio" data-toggle="modal" >New Portfolio</button>
 </div>
 <div class="row">
   <ul class="nav nav-tabs">
-    <li><a href="#">Portfolio 1</a></li>
+    <% @portfolios.each_with_index do |p, index| %>
+    <%active = ""%>
+    <% if index ==0 %>
+    <% active= "active"%>
+    <% end%>
+      <li class="">
+            <a  class="<%=active%>" data-toggle="tab" href="#panel_<%=p.id%>"> 
+              <%=p.name%> 
+            </a> 
+      </li>
+    <%end%>
+    
   </ul>
+  <div class="tab-content">
+    <% @portfolios.each_with_index do |p, index| %>
+    <%active = ""%>
+    <% if index ==0 %>
+    <% active= "active"%>
+    <% end%>
+     
+
+     <div class="tab-pane <%=active%>" id="panel_<%=p.id%>">
+      
+       <%=p.name%> 
+     </div>
+    <% end%>    
+  </div>
 </div>
 <div id="modalPortfolio" class="modal fade" tabindex="-1" role="dialog">
-  <%= form_for @portfolio, url:'create', method: 'post' do |f| %>
+  <%= form_for @portfolio, url:'portfolio/create', method: 'post' do |f| %>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,12 +50,13 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="name">Portifolio Name</label>
-          <input type="text" name="name" id="name" class="form-control" required>
+          <%=f.text_field :name,  class: 'form-control', html:{ class:'form-control', required:'true'} %>
+          
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

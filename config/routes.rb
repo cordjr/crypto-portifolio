@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get "home/cards" => "home#cards"
   get "portfolio" => "portfolio#index"
+  post "portfolio/create" => "portfolio#create"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

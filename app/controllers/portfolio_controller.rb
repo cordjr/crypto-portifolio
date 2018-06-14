@@ -7,7 +7,16 @@ class PortfolioController < ApplicationController
   end
 
   def create
-    redirect_to "portfolio#index"
 
+    Portfolio.create(portfolio_params)
+    flash[:success] = "Portfolio created!"
+
+
+    redirect_to :action => "index"
+
+  end
+  private 
+  def portfolio_params
+    params.require(:portfolio).permit(:name)
   end
 end
