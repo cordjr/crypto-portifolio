@@ -4,6 +4,10 @@ class CreatePortfolioEvents < ActiveRecord::Migration
       t.integer :coin_id
       t.decimal :unit_price
       t.decimal :amount
+      t.integer :portfolio_id
+      t.date :date
+      
+      
 
       t.timestamps null: false
     end

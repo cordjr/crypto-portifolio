@@ -16,3 +16,38 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .line-botom{
+     border-bottom: 1px darkgrey solid;
+ }
+
+ .mini-header{
+     font-size: 18px;
+     font-weight: bold;
+ }
+ .mini-body{
+     font-size: 14px;
+     
+ }
+
+ .portfolio-resume{
+     display: flex;
+     flex-direction: row-reverse;
+     padding-bottom: 0.4em;
+     padding-top: 1em;
+ }
+ .event-header{
+     font-size: 24px;
+     font-weight: bold;
+     text-align: left;
+      margin-top: 0.8em;
+ }
+
+ .card-resume{
+     margin-right: 0.4em !important;
+     border: 1px solid darkgrey;
+     padding: 0.3em;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }

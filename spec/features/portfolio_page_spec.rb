@@ -16,7 +16,7 @@ feature 'portfolio page' do
     visit("/portfolio")
     click_on("New Portfolio")
     fill_in "portfolio_name",	with: "Portfolio" 
-    click_on("Save")
+    click_on("Save Portfolio")
     expect(page).to have_content("Portfolio created!")
   end
 

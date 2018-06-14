@@ -23,9 +23,6 @@ ActiveRecord::Schema.define(version: 20180612220932) do
     t.datetime "last_price_update"
   end
 
-# Could not dump table "portfolio_events" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
-
   create_table "portfolios", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

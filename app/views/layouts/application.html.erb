@@ -17,6 +17,10 @@
         <span class="icon-bar"></span>
       </button>
       <%=link_to("Crypto Portfolio",root_path, class:"navbar-brand") %>
+      <ul class="nav nav-pills">
+        <li><%=link_to("Coins",root_path, class:"navbar-item") %></li>
+        <li> <%=link_to("Porfolios",url_for(controller: 'portfolio', action: 'index'), class:"navbar-item") %></li>
+      </ul>
 
     </div>
     <div class="collapse navbar-collapse" id="bs-exampple-navbar-collapse1">
