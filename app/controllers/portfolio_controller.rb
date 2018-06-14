@@ -5,6 +5,7 @@ class PortfolioController < ApplicationController
     @event = PortfolioEvent.new
     @portfolios = Portfolio.all
     @coins = Coin.all
+    @events = PortfolioEvent.all
   end
 
   def create
@@ -19,17 +20,18 @@ class PortfolioController < ApplicationController
   def create_event
     PortfolioEvent.create(event_params)
     flash[:success] = "Event created"
-    
+
     redirect_to :action => "index"
-    
+
   end
-  
-  private 
+
+  private
   def portfolio_params
     params.require(:portfolio).permit(:name)
   end
+
   def event_params
-    params.require(:portfolio_event).permit(:portfolio_id, 
-      :coin_id, :unit_price, :type, :amount )
+    params.require(:portfolio_event).permit(:portfolio_id,
+      :coin_id, :unit_price, :event_type, :amount )
   end
 end

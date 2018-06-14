@@ -15,12 +15,12 @@
         <% active= "active"%>
         <% end%>
       <li class="">
-            <a  class="<%=active%>" data-toggle="tab" href="#panel_<%=p.id%>"> 
-              <%=p.name%> 
-            </a> 
+            <a  class="<%=active%>" data-toggle="tab" href="#panel_<%=p.id%>">
+              <%=p.name%>
+            </a>
       </li>
     <%end%>
-    
+
   </ul>
   <div class="tab-content">
     <% @portfolios.each_with_index do |p, index| %>
@@ -28,9 +28,9 @@
           <% if index ==0 %>
           <% active= "active"%>
           <% end%>
-        <div class="tab-pane <%=active%>" id="panel_<%=p.id%>">      
+        <div class="tab-pane <%=active%>" id="panel_<%=p.id%>">
           <div class="row portfolio-resume">
-                
+
                 <div class="col-sm-3 align-left  card-resume">
                     <div class="mini-header"> Profit/ Loss</div>
                     <div class="mini-body">0.00</div>
@@ -41,10 +41,10 @@
                 </div>
                 <div class="col-sm-6 line-botom">
                   <div class="event-header">Events
-                  
+
                   </div>
-                  
-   
+
+
                 </div>
 
           </div>
@@ -64,21 +64,31 @@
                   </tr>
             </thead>
             <tbody>
-              
+              <% @events.each do |e|%>
+               <tr>
+                 <td><%=e.date%></td>
+                 <td><%=e.coin.name%></td>
+                 <td><%=e.unit_price%></td>
+                 <td><%=e.amount%></td>
+                 <td><%=e.total%></td>
+
+               </tr>
+              <% end%>
+
             </tbody>
           </table>
 
-              
-                
+
+
         </div>
-    <% end%>        
-  </div> 
-  
-     
- 
-    
-    
-  
+    <% end%>
+  </div>
+
+
+
+
+
+
 </div>
 <div id="modalPortfolio" class="modal fade" tabindex="-1" role="dialog">
   <%= form_for @portfolio, url:'portfolio/create', method: 'post' do |f| %>
@@ -94,7 +104,7 @@
         <div class="form-group">
           <label for="name">Portifolio Name</label>
           <%=f.text_field :name,  class: 'form-control', html:{ class:'form-control', required:'true'} %>
-          
+
         </div>
 
       </div>
@@ -121,29 +131,29 @@
         <div class="form-group ">
           <label for="name">Date</label>
           <%=f.date_field :date,  class: 'form-control', html:{ class:'form-control', required:'true'} %>
-          
+
         </div>
         <div class="form-group ">
           <label for="name">Type</label>
-          <%=f.select :type,  PortfolioEvent.types.keys.to_a, {},  {class: 'form-control'}%>
-          
+          <%=f.select :event_type,  PortfolioEvent.event_types.keys.to_a, {},  {class: 'form-control'}%>
+
         </div>
 
         <div class="form-group ">
           <label for="name">Coin</label>
           <%=f.select :coin_id,  @coins.collect{ |c| [c.name, c.id] }, {},  {class: 'form-control'}%>
-          
+
         </div>
         <div class="form-group ">
           <label for="name">Price</label>
           <%=f.text_field :unit_price, class: 'form-control' %>
-          
+
         </div>
 
         <div class="form-group ">
           <label for="name">Amount</label>
           <%=f.text_field :amount, class: 'form-control' %>
-          
+
         </div>
 
 

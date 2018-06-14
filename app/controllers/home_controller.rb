@@ -8,4 +8,6 @@ class HomeController < ApplicationController
       @coins = Coin.all
       render partial: "cards"
     end
+
+
 end

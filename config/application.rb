@@ -26,5 +26,6 @@ module CryptoPortifolio
     config.generators do |g|
       g.javascript_engine :js
     end
+
   end
 end
