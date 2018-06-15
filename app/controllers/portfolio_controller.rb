@@ -32,6 +32,6 @@ class PortfolioController < ApplicationController
 
   def event_params
     params.require(:portfolio_event).permit(:portfolio_id,
-      :coin_id, :unit_price, :event_type, :amount )
+      :coin_id, :unit_price, :event_type, :amount, :date )
   end
 end

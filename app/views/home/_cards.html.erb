@@ -1,18 +1,26 @@
 <% @coins.each do |coin| %>
-  <div class="media col-sm-3 coin-card ">
-    <img src="" alt="">
-    <div class="media-body">
-      <h5><%=coin.name %></h5>
-      <p>
-      <strong> Last Price</strong>  <%=number_to_currency(coin.last_price) %>
-      </p>
-      <p>
-      <strong> Last update</strong> <%=coin.last_price_update %>
-      </p>
-       
-       
+  <div class="col-sm-3 coin-card ">
 
-    </div>
+
+      <span class="coin-card-title bottom-line"><%=coin.name %></span>
+      <span>
+        <div class="coin-card-last_update">
+          Last Update
+        </div>
+      <div class="coin-card-last_update">
+          <%=coin.last_price_update.strftime("%Y-%m-%d %H:%M:%S") %>
+
+      </div>
+      <div class="coin-card-price">
+        <strong>
+           <%=number_to_currency(coin.last_price) %>
+         </strong>
+
+      </div >
+
+
+
+
 
   </div>
 

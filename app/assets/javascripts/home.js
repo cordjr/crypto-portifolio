@@ -4,6 +4,7 @@
 
 var Home = (function() {
   'use strict';
+  var TIMEOUT = 3000;
 
   var Home = {
     init: {
@@ -13,12 +14,14 @@ var Home = (function() {
   function updateCoins() {
     // body...
     console.log(" atualizando cards");
-    $('#card_container').load('home/cards');
-    setTimeout(updateCoins, 5000);
+    $('#card_container').load('home/cards', function(){
+      $('.coin-card-price').addClass('price-alert');
+    });
+    setTimeout(updateCoins, TIMEOUT);
   }
   $(document).ready(function () {
 
-    setTimeout(updateCoins, 20000);
+    setTimeout(updateCoins, TIMEOUT);
   });
 
 
