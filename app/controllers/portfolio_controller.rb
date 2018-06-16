@@ -5,7 +5,7 @@ class PortfolioController < ApplicationController
     @event = PortfolioEvent.new
     @portfolios = Portfolio.all
     @coins = Coin.all
-    @events = PortfolioEvent.all
+
   end
 
   def create
@@ -26,12 +26,17 @@ class PortfolioController < ApplicationController
   end
 
   private
+
   def portfolio_params
     params.require(:portfolio).permit(:name)
   end
 
   def event_params
     params.require(:portfolio_event).permit(:portfolio_id,
-      :coin_id, :unit_price, :event_type, :amount, :date )
+                                            :coin_id,
+                                            :unit_price,
+                                            :event_type,
+                                            :amount,
+                                            :date )
   end
 end

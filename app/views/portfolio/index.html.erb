@@ -1,8 +1,8 @@
 <h1> Portfolios </h2>
 <%if flash[:success] %>
- <div class="alert alert-success">
-   <h3> <%=flash[:success] %> </h3>
- </div>
+<div class="alert alert-success">
+  <h3> <%=flash[:success] %> </h3>
+</div>
 <%end%>
 <div class="row">
   <button class="btn btn-primary btn-lg pull-right" data-target="#modalPortfolio" data-toggle="modal" >New Portfolio</button>
@@ -10,163 +10,137 @@
 <div class="row">
   <ul  id="tabsPortfolio" class="nav nav-tabs">
     <% @portfolios.each_with_index do |p, index| %>
-        <%active = ""%>
-        <% if index ==0 %>
-        <% active= "active"%>
-        <% end%>
-      <li class="">
-            <a  class="<%=active%>" data-toggle="tab" href="#panel_<%=p.id%>">
-              <%=p.name%>
-            </a>
-      </li>
+    <%active = ""%>
+    <% if index ==0 %>
+    <% active= "active"%>
+    <% end%>
+    <li class="">
+      <a  class="<%=active%>" data-toggle="tab" href="#panel_<%=p.id%>">
+        <%=p.name%>
+      </a>
+    </li>
     <%end%>
-
   </ul>
   <div class="tab-content">
     <% @portfolios.each_with_index do |p, index| %>
-          <%active = ""%>
-          <% if index ==0 %>
-          <% active= "active"%>
-          <% end%>
+        <% active = ""%>
+        <% if index ==0 %>
+        <% active= "active"%>
+        <% end%>
         <div class="tab-pane <%=active%>" id="panel_<%=p.id%>">
           <div class="row portfolio-resume">
 
-                <div class="col-sm-3 align-left  card-resume">
-                    <div class="mini-header"> Profit/ Loss</div>
-                    <div class="mini-body">0.00</div>
-                </div>
-                <div class="col-sm-3  align-left card-resume">
-                    <div class="mini-header"> Avg  Cost</div>
-                    <div class="mini-body"><%=p.avg_cost%></div>
-                </div>
-                <div class="col-sm-6 line-botom">
-                  <div class="event-header">Events
 
-                  </div>
-
-
-                </div>
-
+            <div class="col-sm-9 line-botom">
+              <div class="event-header">Events
+              </div>
+            </div>
+            <div class="col-sm-3   card-resume">
+              <div class="mini-header"> Avg  Cost</div>
+              <div class="mini-body"><%=p.avg_cost%></div>
+            </div>
           </div>
           <div class="row">
-                  <button class="btn btn-default btn-md pull-right" onclick="Portfolio.showModalEvent(<%=p.id%>)" >
-                    New Event
-                  </button>
+            <button class="btn btn-default btn-md pull-right" onclick="Portfolio.showModalEvent(<%=p.id%>)" >
+            New Event
+            </button>
           </div>
-          <table class="table ">
-            <thead>
-                  <tr>
-                        <th>Date</th>
-                        <th>Coin</th>
-                        <th>Price</th>
-                        <th>Amount</th>
-                        <th>Total</th>
-                  </tr>
-            </thead>
-            <tbody>
-              <% @events.each do |e|%>
-               <tr>
-                 <td><%=e.date%></td>
-                 <td><%=e.coin.name%></td>
-                 <td><%=e.unit_price%></td>
-                 <td><%=e.amount%></td>
-                 <td><%=e.total%></td>
-               </tr>
-              <% end%>
-
-            </tbody>
-          </table>
-
-
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Amount</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% p.portfolio_events.each do |e|%>
+                <tr>
+                  <td><%=e.date%></td>
+                  <td><%=e.coin.name%></td>
+                  <td><%=number_to_currency(e.unit_price)%></td>
+                  <td><%=number_with_precision(e.amount, :precision=>10)%></td>
+                  <td><%=e.total%></td>
+                </tr>
+                <% end%>
+              </tbody>
+            </table>
+          </div>
 
         </div>
     <% end%>
   </div>
-
-
-
-
-
-
-</div>
-<div id="modalPortfolio" class="modal fade" tabindex="-1" role="dialog">
-  <%= form_for @portfolio, url:'portfolio/create', method: 'post' do |f| %>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Portfolio</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="name">Portifolio Name</label>
-          <%=f.text_field :name,  class: 'form-control', html:{ class:'form-control', required:'true'} %>
-
+  <div id="modalPortfolio" class="modal fade" tabindex="-1" role="dialog">
+    <%= form_for @portfolio, url:'portfolio/create', method: 'post' do |f| %>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Portfolio</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save Portfolio</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Portifolio Name</label>
+            <%=f.text_field :name,  class: 'form-control',  required:'true' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Portfolio</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
+    <%end%>
   </div>
-  <%end%>
-</div>
-<div id="modalEvent" class="modal fade" tabindex="-1" role="dialog">
-  <%= form_for @event, url:'portfolio/create/event', method: 'post' do |f| %>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Portfolio Event</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <%=f.hidden_field :portfolio_id  %>
-        <div class="form-group ">
-          <label for="name">Date</label>
-          <%=f.date_field :date,  class: 'form-control', html:{ class:'form-control', required:'true'} %>
 
+  <div id="modalEvent" class="modal fade" tabindex="-1" role="dialog">
+    <%= form_for @event, url:'portfolio/create/event', method: 'post' do |f| %>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Portfolio Event</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group ">
-          <label for="name">Type</label>
-          <%=f.select :event_type,  PortfolioEvent.event_types.keys.to_a, {},  {class: 'form-control'}%>
-
+        <div class="modal-body">
+          <%=f.hidden_field :portfolio_id  %>
+          <div class="form-group ">
+            <label for="name">Date</label>
+            <%=f.date_field :date,  class: 'form-control', class:'form-control', required: 'true'%>
+          </div>
+          <div class="form-group ">
+            <label for="name">Operation</label>
+            <%=f.select :event_type,  PortfolioEvent.event_types.keys.to_a, {},  {class: 'form-control', required: 'true'}%>
+          </div>
+          <div class="form-group ">
+            <label for="name">Coin</label>
+            <%=f.select :coin_id,  @coins.collect{ |c| [c.name, c.id] }, {},  {class: 'form-control'}%>
+          </div>
+          <div class="form-group ">
+            <label for="name">Price</label>
+            <%=f.number_field :unit_price, class: 'form-control', required: true, step: :any %>
+          </div>
+          <div class="form-group ">
+            <label for="name">Amount</label>
+            <%=f.number_field :amount, class: 'form-control', required: true, step: :any %>
+          </div>
         </div>
-
-        <div class="form-group ">
-          <label for="name">Coin</label>
-          <%=f.select :coin_id,  @coins.collect{ |c| [c.name, c.id] }, {},  {class: 'form-control'}%>
-
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
-        <div class="form-group ">
-          <label for="name">Price</label>
-          <%=f.text_field :unit_price, class: 'form-control' %>
-
-        </div>
-
-        <div class="form-group ">
-          <label for="name">Amount</label>
-          <%=f.text_field :amount, class: 'form-control' %>
-
-        </div>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
+    <%end%>
   </div>
-  <%end%>
-</div>
-<script>
- $(document).ready(function(){
-   $('#tabsPortfolio a:first').tab('show');
- })
-</script>
+  <script>
+  $(document).ready(function(){
+  $('#tabsPortfolio a:first').tab('show');
+  })
+  </script>
